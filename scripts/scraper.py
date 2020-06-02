@@ -3,7 +3,7 @@
 import os
 import twint
 
-seed_hashtag = '#AmericaorTrump' # Replace value
+seed_hashtag = '#AmericaOrTrump' # Replace value
 seed_hashtag = seed_hashtag.lower()
 output_path = os.path.join('..', 'data', 'tweets.csv')
 
