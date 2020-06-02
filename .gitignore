@@ -127,3 +127,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Mac Os
+.DS_Store
+.Spotlight-V100
+.Trashes
+
+# Visual Studio code
+*.vscode/
+
+data/
+scripts/utils.py
+notebooks/
