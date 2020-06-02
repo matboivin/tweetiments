@@ -15,7 +15,6 @@ df = pd.read_csv(df_path)
 # Select columns
 features = [
     'id',
-    'created_at',
     'date',
     'time',
     'timezone',
