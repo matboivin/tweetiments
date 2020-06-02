@@ -136,6 +136,7 @@ dmypy.json
 # Visual Studio code
 *.vscode/
 
+test/
 data/
 scripts/utils.py
 notebooks/
