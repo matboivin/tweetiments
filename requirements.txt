@@ -4,3 +4,4 @@ twint
 emot
 textblob
 nltk
+plotly
