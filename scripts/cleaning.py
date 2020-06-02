@@ -30,8 +30,8 @@ features = [
 df_clean = df[features]
 
 # Convert emojis and emoticons
-df_clean['tweet'] = df_clean['tweet'].map(convert_emoticons)
-df_clean['tweet'] = df_clean['tweet'].map(convert_emojis)
+df_clean['tweet'] = df_clean['tweet'].apply(convert_emoticons)
+df_clean['tweet'] = df_clean['tweet'].apply(convert_emojis)
 
 # Remove remaining emojis
 df_clean = df_clean.astype(str).apply(lambda x: x.str.encode('ascii', 'ignore').str.decode('ascii'))
