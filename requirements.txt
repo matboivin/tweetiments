@@ -2,3 +2,5 @@ numpy
 pandas
 twint
 emot
+textblob
+nltk
