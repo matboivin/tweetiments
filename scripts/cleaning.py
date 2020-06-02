@@ -5,7 +5,6 @@ import pandas as pd
 
 from utils import convert_emojis
 from utils import convert_emoticons
-from utils import remove_emoji
 
 # Create filepath
 df_path = os.path.join('..', 'data', 'tweets.csv')
@@ -31,11 +30,11 @@ features = [
 df_clean = df[features]
 
 # Convert emojis and emoticons
-df_clean['tweet'] = df_clean['tweet'].apply(convert_emoticons)
-df_clean['tweet'] = df_clean['tweet'].apply(convert_emojis)
+df_clean['tweet'] = df_clean['tweet'].map(convert_emoticons)
+df_clean['tweet'] = df_clean['tweet'].map(convert_emojis)
 
-# Remove lasting emojis
-df_clean['tweet'] = df_clean['tweet'].apply(remove_emoji)
+# Remove remaining emojis
+df_clean = df_clean.astype(str).apply(lambda x: x.str.encode('ascii', 'ignore').str.decode('ascii'))
 
 # Save clean data
 output_path = os.path.join('..', 'data', 'clean_tweets.csv')
