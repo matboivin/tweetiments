@@ -16,19 +16,13 @@ app.title = 'tweetiments'
 server = app.server
 
 app.layout = html.Div([
-    html.H2('Twitter Sentiment Analysis'),
-    dcc.Dropdown(
-        id='dropdown',
-        options=[{'label': i, 'value': i} for i in ['LA', 'NYC', 'MTL']],
-        value='LA'
-    ),
-    html.Div(id='display-value')
+    html.H2(
+        'Twitter Sentiment Analysis',
+        style={
+            'textAlign': 'center'
+        }
+    )
 ])
-
-@app.callback(dash.dependencies.Output('display-value', 'children'),
-              [dash.dependencies.Input('dropdown', 'value')])
-def display_value(value):
-    return 'You have selected "{}"'.format(value)
 
 if __name__ == '__main__':
     app.run_server(
