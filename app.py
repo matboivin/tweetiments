@@ -20,6 +20,7 @@ from nltk.corpus import stopwords
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
+# Initialise the app
 app = dash.Dash(
     __name__,
     external_stylesheets=external_stylesheets
@@ -29,6 +30,7 @@ app.title = 'tweetiments'
 
 server = app.server
 
+# Define the app
 app.layout = html.Div(
     children=[
     html.H2(
@@ -37,7 +39,13 @@ app.layout = html.Div(
             'textAlign': 'center'
         }
     ),
+    dcc.Dropdown(
+        id='dropdown',
+        options=[{'label': i, 'value': i} for i in ['#AmericaOrTrump']],
+        value='#AmericaOrTrump'
+    ),
 
+    html.Div(id='display-value'),
     html.Div(id='update-sentiment'),
 
     dcc.Interval(
@@ -49,6 +57,14 @@ app.layout = html.Div(
     ],
     style={'padding': '20px'}
 )
+
+@app.callback(dash.dependencies.Output('display-value', 'children'),
+              [dash.dependencies.Input('dropdown', 'value')])
+
+def display_value(value):
+    if value is None:
+        return 'Select a hashtag'
+    return 'Selected hashtag: {}'.format(value)
 
 @app.callback(Output('update-sentiment', 'children'),
               [Input('interval-component-slow', 'n_intervals')])
@@ -95,7 +111,7 @@ def update_sentiment_viz(n):
                                         name="Neutral",
                                         opacity=0.8,
                                         mode='lines',
-                                        line=dict(width=0.5, color='rgb(131, 90, 241)'),
+                                        line=dict(width=0.5, color='rgb(141, 147, 249)'),
                                         stackgroup='one' 
                                     ),
                                     go.Scatter(
@@ -104,7 +120,7 @@ def update_sentiment_viz(n):
                                         name="Negative",
                                         opacity=0.8,
                                         mode='lines',
-                                        line=dict(width=0.5, color='rgb(255, 50, 50)'),
+                                        line=dict(width=0.5, color='rgb(244, 66, 66)'),
                                         stackgroup='two' 
                                     ),
                                     go.Scatter(
@@ -113,7 +129,7 @@ def update_sentiment_viz(n):
                                         name="Positive",
                                         opacity=0.8,
                                         mode='lines',
-                                        line=dict(width=0.5, color='rgb(184, 247, 212)'),
+                                        line=dict(width=0.5, color='rgb(66, 245, 81)'),
                                         stackgroup='three' 
                                     )
                                 ]
@@ -129,6 +145,7 @@ def update_sentiment_viz(n):
             ]
     return children
 
+# Run the app
 if __name__ == '__main__':
     app.run_server(
         port=8000,
