@@ -5,3 +5,4 @@ emot
 textblob
 nltk
 plotly
+dash==1.12.0
