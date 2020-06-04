@@ -137,6 +137,6 @@ dmypy.json
 *.vscode/
 
 test/
-data/
+data/tweets.csv
 scripts/utils.py
 notebooks/cleaning.ipynb
